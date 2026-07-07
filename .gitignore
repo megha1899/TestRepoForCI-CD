@@ -1,0 +1,19 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Environment — never commit real credentials or URLs
+.env
+ 
+# Playwright output
+test-results/
+reports/
+playwright-report/
+ 
+# Node
+node_modules/
