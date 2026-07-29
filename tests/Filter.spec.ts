@@ -49,3 +49,27 @@
 // //   });
 
 // });
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+  await expect(page.getByRole('link', { name: 'Get started' })).toBeVisible();
+  await page.getByRole('link', { name: 'Get started' }).click();
+  await expect(page.getByRole('link', { name: 'Playwright logo Playwright' })).toBeVisible();
+  await page.getByRole('link', { name: 'Writing tests', exact: true }).click();
+  await expect(page.getByRole('link', { name: 'GitHub repository' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Discord server' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Switch between dark and light' })).toBeVisible();
+  await page.getByRole('link', { name: 'Setting up CI' }).click();
+  await expect(page.getByRole('heading', { name: 'Setting up CI' })).toBeVisible();
+  await page.getByRole('link', { name: 'Playwright logo Playwright' }).click();
+  await expect(page.getByRole('heading', { name: 'Built for testing' })).toBeVisible();
+  await page.getByRole('button', { name: 'Search (Meta+k)' }).click();
+  await expect(page.getByRole('button', { name: 'Search', exact: true })).toBeVisible();
+  await page.getByRole('searchbox', { name: 'Search' }).click();
+  await page.getByRole('searchbox', { name: 'Search' }).fill('Agents');
+  await expect(page.getByRole('link', { name: 'See all 4420 results' })).toBeVisible();
+  await page.getByRole('link', { name: 'Coding agents', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Coding agents' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Core CommandsDirect link to' })).toBeVisible();
+});
