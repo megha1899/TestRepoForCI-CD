@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.1.0
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:20.11
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+      - node/install-packages:
+          pkg-manager: npm
+
+      - run:
+          name: Install Playwright Browsers
+          command: |
+            npx playwright install --with-deps
+
+      - run:
+          name: Run Playwright Tests
+          command: |
+            npx playwright test
+
+      - store_test_results:
+          path: test-results
+
+      - store_artifacts:
+          path: playwright-report
+
+workflows:
+  version: 2
+
+  build-and-test:
+    jobs:
+      - test
